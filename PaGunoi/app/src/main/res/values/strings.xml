@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">PaGunoi</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="permission_rationale_location">Access to the location service is required to demonstrate the \\\'my location\\\' feature, which shows your current location on the map</string>
+    <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
+    <string name="permission_required_toast">Permission is required for this demo.</string>
+    <string name="reject_dialog">Cancel</string>
+    <string name="confirm_dialog">DA</string>
+    <string name="dialog_message">Doriti sa creati un raport pentru aceasta locatie ?</string>
+    <string name="permission_denied">The following permission needs to be approved in order to continue:</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="google_title_text">Google Sign In</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="desc_firebase_lockup">Firebase Logo and Name</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="google_status_fmt">Google User: %s</string>
+    <string name="firebase_status_fmt">Firebase UID: %s</string>
+    <string name="istoric_sesizari">Istoric Sesizari</string>
+    <string name="sesizare_noua">Sesizare Noua</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open_pdf">Open Pdf</string>
+    <string name="checkbox_local_data_message">Use local data for name and address</string>
+    <string name="SHARED_NAME_KEY">NAME_KEY</string>
+    <string name="default_value" />
+    <string name="ADDRESS_KEY">ADDRESS_KEY</string>
+</resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "446425044140",
+    "firebase_url": "https://pagunoi.firebaseio.com",
+    "project_id": "pagunoi",
+    "storage_bucket": "pagunoi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446425044140:android:4b9f9246513793209a3b09",
+        "android_client_info": {
+          "package_name": "com.example.pagunoi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446425044140-vjebiv2qgritt5m9ltot1ea7lfnkdhf9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pagunoi",
+            "certificate_hash": "78d32f21b350a0a8a881d88590b7751a53984764"
+          }
+        },
+        {
+          "client_id": "446425044140-om9uvagu94t2tgn24kh4nuubr0ok3j6u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtTB3KV3rWLAe4X1kNrbRDP9y8lYeJZxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446425044140-om9uvagu94t2tgn24kh4nuubr0ok3j6u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
