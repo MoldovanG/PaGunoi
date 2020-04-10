@@ -25,6 +25,8 @@
         android:roundIcon="@mipmap/ic_new_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver android:name=".utils.MyReceiver"  android:exported="true">
+        </receiver>
         <activity android:name=".activities.ReportsHistoryActivity"></activity>
         <activity android:name=".activities.BaseActivity" />
         <activity android:name=".activities.GoogleSignInActivity">

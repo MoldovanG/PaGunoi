@@ -25,4 +25,6 @@
     <string name="SHARED_NAME_KEY">NAME_KEY</string>
     <string name="default_value" />
     <string name="ADDRESS_KEY">ADDRESS_KEY</string>
+    <string name="channel_name">channel name</string>
+    <string name="channel_description">channel description</string>
 </resources>

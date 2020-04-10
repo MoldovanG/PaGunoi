@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pagunoi.R;
 import com.example.pagunoi.roomdb.Report;
 
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.lang.reflect.Method;
