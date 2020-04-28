@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -229,9 +230,21 @@ public class ReportCreatorActivity extends AppCompatActivity
             }
         } else if (i == R.id.checkBox_local_data){
             Log.d("CHECKBOX", "the checkbox has been clicked");
-            fillWithSavedLocalData();
+            CheckBox checkBox = findViewById(R.id.checkBox_local_data);
+            if (checkBox.isChecked()){
+                fillWithSavedLocalData();
+            }
+            else {
+                clearEditTextFields();
+            }
         }
     }
+
+    private void clearEditTextFields() {
+        adresaPersonala.setText("");
+        numeComplet.setText("");
+    }
+
     private void saveDataToSharedPreferences(){
         SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

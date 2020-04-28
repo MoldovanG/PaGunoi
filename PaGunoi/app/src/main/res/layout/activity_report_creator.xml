@@ -13,7 +13,8 @@
         android:layout_marginStart="16dp"
         android:background="@drawable/button"
         android:drawableLeft="@drawable/ic_image_black_24dp"
-        android:text="   Add Photo  "
+        android:padding="5dp"
+        android:text="Add Photo"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -48,7 +48,9 @@ public class PdfCreator {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
             Image image = Image.getInstance(stream.toByteArray());
-            image.scalePercent(30);
+            float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+                    - document.rightMargin()) / image.getWidth()) * 100;
+            image.scalePercent(scaler);
             image.setAlignment(Element.ALIGN_LEFT);
             document.add(image);
 
