@@ -38,16 +38,6 @@
             android:contentDescription="@string/desc_firebase_lockup"
             android:src="@drawable/vectorpaint" />
 
-        <TextView
-            android:id="@+id/status"
-            style="@style/ThemeOverlay.MyTextDetail"
-            android:text="@string/signed_out" />
-
-        <TextView
-            android:id="@+id/detail"
-            style="@style/ThemeOverlay.MyTextDetail"
-            tools:text="Firebase User ID: 123456789abc" />
-
     </LinearLayout>
 
     <RelativeLayout
@@ -78,12 +68,13 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/signOutButton"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/button_horizontal_margin"
                 android:layout_marginEnd="@dimen/button_horizontal_margin"
+                android:background="@drawable/button"
                 android:layout_weight="1"
                 android:text="@string/sign_out"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
@@ -102,23 +93,23 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="1.0">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_sesizare"
             android:layout_width="@dimen/standard_button_width"
-            android:layout_height="@dimen/standard_button_height"
+            android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:text="@string/sesizare_noua"
-            android:theme="@style/ThemeOverlay.MyDarkButton"
+            android:background="@drawable/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_istoric_sesizari"
             android:layout_width="@dimen/standard_button_width"
-            android:layout_height="@dimen/standard_button_height"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
             android:layout_marginTop="32dp"
-            android:theme="@style/ThemeOverlay.MyDarkButton"
             android:text="@string/istoric_sesizari"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

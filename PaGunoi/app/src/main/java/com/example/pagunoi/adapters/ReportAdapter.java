@@ -50,7 +50,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
         TextView pathTextView = holder.view.findViewById(R.id.view_holder_path_textView);
         TextView uidTextView = holder.view.findViewById(R.id.view_holder_uid_textView);
         pathTextView.setText(report.getReportFilePath());
-        uidTextView.setText("Id: " + String.valueOf(report.getUid()));
+        uidTextView.setText("Numarul sesizarii: " + String.valueOf(report.getUid()));
         holder.view.findViewById(R.id.open_pdf_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

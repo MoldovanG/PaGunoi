@@ -27,4 +27,7 @@
     <string name="ADDRESS_KEY">ADDRESS_KEY</string>
     <string name="channel_name">channel name</string>
     <string name="channel_description">channel description</string>
+    <string name="mentiuni_precum_si_detalii_despre_situatie">Mentiuni, precum si detalii despre situatie.</string>
+    <string name="adresa_personala">Adresa personala</string>
+    <string name="numele_dumneavoastra">Numele dumneavoastra</string>
 </resources>

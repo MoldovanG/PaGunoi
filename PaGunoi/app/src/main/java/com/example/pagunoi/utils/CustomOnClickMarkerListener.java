@@ -47,8 +47,6 @@ public class CustomOnClickMarkerListener implements GoogleMap.OnMarkerClickListe
                             address = "Geocoder service not working";
                         }
                         builder.append(address);
-                        builder.append("\n GPS Coordinates: ");
-                        builder.append(marker.getPosition().latitude + ", " + marker.getPosition().longitude);
 
                         intent.putExtra(ReportCreatorActivity.LOCATION_KEY,builder.toString());
                         mContext.startActivity(intent);

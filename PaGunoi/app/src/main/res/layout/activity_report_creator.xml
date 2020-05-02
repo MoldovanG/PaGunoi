@@ -6,54 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".activities.ReportCreatorActivity">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/gallery_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button"
-        android:drawableLeft="@drawable/ic_image_black_24dp"
+        android:drawableStart="@drawable/ic_image_black_24dp"
         android:padding="5dp"
         android:text="Add Photo"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/email_report"
         app:layout_constraintStart_toStartOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/email_report"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="Email Report"
-        android:background="@drawable/button"
-        android:drawableLeft="@drawable/ic_email_black_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/save_report"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
-        android:text="Save Report"
         android:background="@drawable/button"
-        android:drawableLeft="@drawable/ic_picture_as_pdf_black_24dp"
+        android:drawableStart="@drawable/ic_email_black_24dp"
+        android:text="Email Report"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/email_report" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button"
+        android:drawableStart="@drawable/ic_picture_as_pdf_black_24dp"
+        android:text="Save Report"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/location_textview"
+        style="@style/Widget.MaterialComponents.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -62,42 +64,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox_local_data" />
 
-    <EditText
-        android:id="@+id/editText"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Mentiuni, precum si detalii despre situatie."
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/gallery_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adresa_personala_editText" />
+        app:layout_constraintStart_toStartOf="@+id/gallery_button"
+        app:layout_constraintTop_toBottomOf="@+id/adresa_personala_container">
 
-    <EditText
-        android:id="@+id/adresa_personala_editText"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:hint="@string/mentiuni_precum_si_detalii_despre_situatie"
+            android:inputType="textPersonName|textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/adresa_personala_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Adresa personala"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nume_complet_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/nume_complet_container">
 
-    <EditText
-        android:id="@+id/nume_complet_editText"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/adresa_personala_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/adresa_personala"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nume_complet_editText" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nume_complet_container"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Numele dumneavoastra"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/location_textview">
 
-    <CheckBox
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nume_complet_editText"
+            android:hint="@string/numele_dumneavoastra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/location_textview" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/checkBox_local_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
