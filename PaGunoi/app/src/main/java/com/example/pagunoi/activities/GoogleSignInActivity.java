@@ -3,10 +3,15 @@ package com.example.pagunoi.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.pagunoi.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -16,6 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -26,13 +32,15 @@ import com.google.firebase.auth.GoogleAuthProvider;
  * Demonstrate Firebase Authentication using a Google ID Token.
  */
 public class GoogleSignInActivity extends BaseActivity implements
-        View.OnClickListener {
+        View.OnClickListener,  NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "GoogleActivity";
     private static final int RC_SIGN_IN = 9001;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
     // [END declare_auth]
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -67,6 +75,21 @@ public class GoogleSignInActivity extends BaseActivity implements
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
+
+        // drawer layout instance to toggle the menu icon to open
+        // drawer and back button to close drawer
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // to make the Navigation drawer icon always appear on the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        NavigationView navigationView = findViewById(R.id.main_navigation);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     // [START on_start_check_user]
@@ -193,5 +216,31 @@ public class GoogleSignInActivity extends BaseActivity implements
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull @org.jetbrains.annotations.NotNull MenuItem item) {
+        Log.w(TAG, item.toString());
+        switch (item.getItemId()) {
+            case R.id.nav_our_team:
+                Intent intent = new Intent(this, OurTeamActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_financing:
+                intent = new Intent(this, FinancingActivity.class);
+                startActivity(intent);
+                break;
+        }
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

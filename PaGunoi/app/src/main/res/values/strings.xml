@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">PaGunoi</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
     <string name="title_activity_maps">Map</string>
     <string name="permission_rationale_location">Access to the location service is required to demonstrate the \\\'my location\\\' feature, which shows your current location on the map</string>
     <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
@@ -30,4 +32,6 @@
     <string name="mentiuni_precum_si_detalii_despre_situatie">Mentiuni, precum si detalii despre situatie.</string>
     <string name="adresa_personala">Adresa personala</string>
     <string name="numele_dumneavoastra">Numele dumneavoastra</string>
+    <string name="action_search">Search</string>
+    <string name="search_hint">File name</string>
 </resources>

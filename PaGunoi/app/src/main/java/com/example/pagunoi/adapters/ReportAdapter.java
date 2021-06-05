@@ -8,6 +8,8 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,15 +21,18 @@ import com.example.pagunoi.roomdb.Report;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder>  {
+public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder> implements Filterable {
 
 
     private List<Report> mDataSet;
+    private List<Report> mDataSetFiltered;
 
     public ReportAdapter(List<Report> mDataSet) {
         this.mDataSet = mDataSet;
+        this.mDataSetFiltered = mDataSet;
     }
 
     public List<Report> getmDataSet() {
@@ -46,7 +51,7 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final Report report = mDataSet.get(position);
+        final Report report = mDataSetFiltered.get(position);
         TextView pathTextView = holder.view.findViewById(R.id.view_holder_path_textView);
         TextView uidTextView = holder.view.findViewById(R.id.view_holder_uid_textView);
         pathTextView.setText(report.getReportFilePath());
@@ -81,7 +86,42 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return mDataSet.size();
+        return mDataSetFiltered.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    mDataSetFiltered = mDataSet;
+                } else {
+                    List<Report> filteredList = new ArrayList<>();
+                    for (Report row : mDataSet) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.getReportFilePath().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    mDataSetFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mDataSetFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mDataSetFiltered = (ArrayList<Report>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

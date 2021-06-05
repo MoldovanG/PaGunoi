@@ -73,9 +73,9 @@ public class ReportCreatorActivity extends AppCompatActivity
         findViewById(R.id.checkBox_local_data).setOnClickListener(this);
     }
     private void initialiseViewItems() {
-        locatieSesizare = ((TextView)findViewById(R.id.location_textview)).getText().toString();
         Bundle bundle = getIntent().getExtras();
         String location = bundle.getString(LOCATION_KEY);
+        locatieSesizare = location;
         mentiuniEditText = findViewById(R.id.editText);
         ((TextView)findViewById(R.id.location_textview)).setText(location);
         imageView = findViewById(R.id.imageView);
