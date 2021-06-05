@@ -1,7 +1,5 @@
 package com.example.pagunoi.fragments;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -28,7 +26,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.List;
 
-import static androidx.core.content.ContextCompat.getSystemService;
 
 
 public class ReportsHistory extends Fragment implements OnReportRepositoryActionListener {

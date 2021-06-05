@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -35,7 +36,6 @@ import com.example.pagunoi.utils.PermissionUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.itextpdf.text.DocumentException;
 
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -51,6 +51,8 @@ public class ReportCreatorActivity extends AppCompatActivity
     private static final int EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE = 2;
     public static final String LOCATION_KEY = "location";
     private static final int RESULT_LOAD_IMG = 1;
+    private static final int CAMERA_REQUEST = 1888;
+    private static final int MY_CAMERA_PERMISSION_CODE = 100;
     //View Items
     private ImageView imageView;
     private EditText adresaPersonala;
@@ -68,6 +70,7 @@ public class ReportCreatorActivity extends AppCompatActivity
         setContentView(R.layout.activity_report_creator);
         initialiseViewItems();
         findViewById(R.id.gallery_button).setOnClickListener(this);
+        findViewById(R.id.take_photo_button).setOnClickListener(this);
         findViewById(R.id.save_report).setOnClickListener(this);
         findViewById(R.id.email_report).setOnClickListener(this);
         findViewById(R.id.checkBox_local_data).setOnClickListener(this);
@@ -98,23 +101,41 @@ public class ReportCreatorActivity extends AppCompatActivity
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show();
             }
 
-        }else {
+        } else if (reqCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            savedImage=photo;
+            imageView.setImageBitmap(photo);
+        } else {
             Toast.makeText(this, "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
 
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode != EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE) {
+        if (requestCode != EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE && requestCode != MY_CAMERA_PERMISSION_CODE) {
             Log.d("REPORT", "Another request code : " + requestCode);
             return;
         }
-        if (PermissionUtils.isPermissionGranted(permissions, grantResults, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            // Enable the my location layer if the permission has been granted.
-            savePdf();
+        if (requestCode == MY_CAMERA_PERMISSION_CODE)
+        {
+            if (PermissionUtils.isPermissionGranted(permissions, grantResults, Manifest.permission.CAMERA))
+            {
+                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show();
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            }
+            else
+            {
+                mPermissionDenied = true;
+            }
         } else {
-            // Permission was denied. Display an error message
-            mPermissionDenied = true;
+            if (PermissionUtils.isPermissionGranted(permissions, grantResults, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                // Enable the location layer if the permission has been granted.
+                savePdf();
+            } else {
+                // Permission was denied. Display an error message
+                mPermissionDenied = true;
+            }
         }
     }
 
@@ -193,11 +214,26 @@ public class ReportCreatorActivity extends AppCompatActivity
                 .newInstance(true, Manifest.permission.WRITE_EXTERNAL_STORAGE).show(getSupportFragmentManager(), "dialog");
     }
 
+    private void takePhoto(){
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
+            PermissionUtils.requestPermission(this, MY_CAMERA_PERMISSION_CODE,
+                    Manifest.permission.CAMERA, true);
+        }
+        else
+        {
+            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        }
+    }
+
     @Override
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.gallery_button) {
             addPhoto();
+        } else if (i == R.id.take_photo_button) {
+            takePhoto();
         } else if (i == R.id.save_report) {
             String mentiuni = mentiuniEditText.getText().toString();
             if (mentiuni.isEmpty()
